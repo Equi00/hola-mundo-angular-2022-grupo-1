@@ -1,0 +1,23 @@
+<!-- Results -->
+<div class="header">
+    <div class="itinerary-result">
+        <div class="search-container">
+            Itinerarios
+        </div>
+        <div class="search-container" (ngModel)="result">
+            Totales: {{result}}
+        </div>
+    </div>
+</div>
+
+<!-- Itineraries -->
+<div class="main-content">
+    <div class="itinerary-grid">
+        <app-itinerary-card *ngFor="let itinerary of itineraries | myItineraryFilter: user" [itinerary]="itinerary" [user]="user"></app-itinerary-card>
+    </div>
+    <div *ngIf="result == 0" style="display: flex; justify-content: center;">
+      <p>No tienes ningún itinerario aún</p>
+    </div>
+</div>
+
+

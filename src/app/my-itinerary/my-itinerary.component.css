@@ -1,0 +1,172 @@
+html,body {
+    display: flex;
+    min-height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+/* /-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/
+    Scrollbar
+/-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/ */
+
+::-webkit-scrollbar {
+    width: 1.2rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 1.2rem;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: blue;
+}
+
+/* /-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/
+    Header
+/-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/ */
+
+#search-computer {
+    display: flex;
+    visibility: visible;
+}
+
+#search-mobile {
+    display: none;
+    visibility: hidden;
+}
+
+.search-icon:hover {
+    background-color: var(--icon-color);
+    border-color: var(--icon-color);
+}
+
+.search-result {
+    display: flex;
+    justify-content: space-around;
+    text-align: start;
+    width: 100%;
+    background-color: black;
+    color: var(--color-secondary-font);
+    user-select: none;
+    text-indent: 10px;
+}
+
+/* /-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/
+    Main
+/-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/ */
+
+.itinerary-grid {
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+    padding: 3rem 0;
+}
+
+.itinerary {
+    display: relative;
+    background-color: white;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 0.4rem;
+    box-shadow: 2px;
+    user-select: none;
+}
+
+.destination-container {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid;
+}
+
+.destination {
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+    color: var(--color-primary-font);
+    text-indent: 5px;
+}
+
+.card-title {
+    display: flex;
+    justify-content: center;
+}
+
+.rating-stars {
+    padding-right: 1rem;
+    color: blueviolet;
+    text-shadow: 2px 2px 4px grey;
+    text-indent: 10px;
+}
+
+.info {
+    border-bottom: 1px solid;
+    padding: 15px 5px;
+}
+
+.cost-dificulty {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+    padding: 15px 5px;
+}
+
+.itinerary-icon:hover {
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+.more-detail {
+    padding: 5px;
+    color: var(--color-secondary-font);
+    text-align: center;
+    background-color: var(--color-primary);
+}
+
+.more-detail:hover {
+    cursor: pointer;
+    background-color: var(--color-secondary);
+}
+
+/* /-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/
+    Responsive
+/-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/ */
+
+@media (min-width: 401px) and (max-width: 768px) {
+    .itinerary {
+        display: relative;
+        background-color: white;
+        border: 1px solid;
+        border-color: black;
+        border-radius: 0.4rem;
+        box-shadow: 2px;
+        user-select: none;
+    }
+
+    .itinerary-grid {
+        display: grid;
+        grid-gap: 50px;
+        grid-template-columns: repeat(auto-fit, 300px);
+        justify-content: center;
+        padding: 3rem 0;
+    }
+}
+
+
+
+.mensaje-error p {
+  display: flex;
+  color: red!important;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}

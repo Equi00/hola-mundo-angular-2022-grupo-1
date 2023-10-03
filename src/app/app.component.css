@@ -1,0 +1,33 @@
+/* * {
+    margin: 0;
+  }
+  html, body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  } */
+
+  .container {
+    height: 100vh;
+  }
+.page-wrap {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -4rem; 
+    margin-top: -3.55rem;
+  }
+  .page-wrap:after {
+    content: "";
+    display: block;
+  }
+  .site-footer, .page-wrap:after {
+    height: 4rem; 
+  }
+  .site-footer {
+    background: orange;
+  }
+
+  app-footer {
+    display: flex;
+    height: 100%;
+  }

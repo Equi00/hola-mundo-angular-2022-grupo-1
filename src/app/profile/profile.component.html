@@ -1,0 +1,154 @@
+
+<div  class="profile-edit-container" (ngSubmit)="saveChanges()">
+
+    <div class="header-container">
+            <img class="profile-pic rounded" src="../assets/imgs/juancarlosgomez.jpg">
+            <h1>{{user.name}} {{user.surname}}</h1>
+    </div>
+
+    <div class="personal-data form-group">
+
+        <div class="container-title">
+            <h2>Datos Personales</h2>
+            <div class="title-info">
+                <h3>Alta:</h3>
+                <div class="date">{{user.initialDate | date: 'dd/MM/yyyy'}}</div>
+                <h3>-</h3>
+                <h3>Antiguedad:</h3>
+                <div class="span">{{user.antiquity}} a&#241;o<span *ngIf="user.antiquity > 1">s</span></div>
+            </div>
+        </div>
+
+        <div class="data-show">
+            <div class="section">
+                <label for="name" >Nombre</label>
+                <input type="text" class="form-control name-input" name="name" requerid [ngModel]="this.user.name | titlecase"
+                (ngModelChange)="user.name=$event" [pattern]="unamePattern" #uname="ngModel"
+                minlength="1" maxlength="20" placeholder="Nombre">
+                <div *ngIf="uname.errors?.['pattern'] || uname.errors?.['minlength'] || uname.errors?.['maxlength'] " class="error-message">
+                    Hasta 20 Caracteres Alfabeticos </div>
+                <label class="surname">Apellido</label>
+                <input type="text" class="form-control surname-input" name="surName" [ngModel]="user.surname | titlecase"
+                (ngModelChange)="user.surname=$event" [pattern]="snamePattern" #sname="ngModel"
+                minlength="1" maxlength="30" placeholder="Apellido">
+                <div *ngIf="sname.errors?.['pattern']  || sname.errors?.['minlength'] || sname.errors?.['maxlength']" class="error-message">
+                    Hasta 30 Caracteres Alfabeticos </div>
+            </div>
+            <div class="section">
+                <label for="username">Username</label>
+                <input type="text" class="form-control user-input" name="nickName" [ngModel]="user.userName | lowercase"
+                (ngModelChange)="user.userName=$event" [pattern]="nnamePattern" #nname="ngModel" placeholder="Apodo">
+                <div *ngIf="nname.errors?.['pattern']" class="error-message">
+                    Hasta 15 Caracteres Alfanumericos </div>
+                <label for="country">Pais de Residencia</label>
+                <select data-testid="residence" class="form-control" [(ngModel)]="user.countryOfResidence">
+                    <option *ngFor="let residenceCountry of residenceCountries" (ngValue)="user.countryOfResidence">{{residenceCountry}}</option>
+                </select>
+            </div>
+            <div class="section">
+                <label class="days">Dias Disponibles</label>
+                <input type="number" class="form-control days-input" name="avaliableDays" [ngModel]="user.travelDays"
+                [pattern]="adaysPattern" #adays="ngModel" placeholder="Dias Disponibles">
+                <div *ngIf="adays.errors?.['pattern']" class="error-message">
+                    Caracteres Numericos hasta 999</div>
+                <label class="critery">Criterio para realizar itinerario</label>
+                <select class="form-control" [(ngModel)]="userPersonality">
+                    <option *ngFor="let personality of personalities">{{personality}}</option>
+                </select>
+            </div>
+            <!-- MOSTRAR INITIALDATE DEL OBJ
+            <div>{{user.initialDate}}</div>  -->
+
+        </div>
+    </div>
+
+        <div class="vehicle-preferences">
+            <span>Preferencias del Vehiculo</span>
+            <div class="vehicle-buttons">
+                <button type="rate" data-testid="neophyte" class="btn btn-filter" [class.btn-filter-on]="Neophyte" [class.btn-filter-off]="!Neophyte" (click)="checkSelected('Neophyte')">Neofito</button>
+                <button type="rate" data-testid="superstitious" class="btn btn-filter" [class.btn-filter-on]="Superstitious" [class.btn-filter-off]="!Superstitious" (click)="checkSelected('Superstitious')">Superticioso</button>
+                <button type="rate" data-testid="capricious" class="btn btn-filter" [class.btn-filter-on]="Capricious" [class.btn-filter-off]="!Capricious" (click)="checkSelected('Capricious')">Caprichoso</button>
+                <button type="rate" data-testid="selective" class="btn btn-filter" [class.btn-filter-on]="Selective" [class.btn-filter-off]="!Selective" (click)="checkSelected('Selective')">Selectivo</button>
+                <button type="rate" data-testid="no-limit" class="btn btn-filter" [class.btn-filter-on]="NoLimit" [class.btn-filter-off]="!NoLimit" (click)="checkSelected('NoLimit')">Sin Limites</button>
+            </div>
+        </div>
+
+
+    <div class="schedule">
+
+        <div class="container-title">
+            <h2>Agenda</h2>
+        </div>
+
+        <div class="data-show section-schedule">
+            <div class="section section-desired-destinations">
+                <div class="schedule-tittle">
+                    <span>Destinos Deseados</span>
+                    <button type="add-destiny" (click)="user.addDesiredDestination(mockDesiredDestination)" class="btn btn-add-destiny">&#43; Destino</button>
+                </div>
+                <div class="schedule-chart charts-card">
+                    <div class="chart-tittle">
+                        <span>Destino</span>
+                    </div>
+                    <div class="chart-items" *ngFor="let desireDestination of user.desiredDestinations">
+                        <div class="item-name" ngValue="desireDestination"><span>{{desireDestination.country}}</span><span> - </span><span>{{desireDestination.city}}</span></div>
+                        <button type="delete" (click)="user.removeDesiredDestination(desireDestination)" class="btn-delete"><span class="colored-icon material-symbols-sharp">delete</span></button>
+                    </div>
+                    <div *ngIf="user.desiredDestinations.length == 0">
+                        No hay destinos deseados
+                    </div>
+                </div>
+            </div>
+            <div class="section section-visited-destinations">
+                <div class="schedule-tittle">
+                    <span>Destinos Visitados</span>
+                    <button class="btn btn-add-destiny btn-invisible">&#43; Destino</button>
+                </div>
+                <div class="schedule-chart charts-card">
+                    <div class="chart-tittle">Destino</div>
+                    <div class="chart-items" *ngFor="let visitedDestination of user.visitedDestinations">
+                        <div class="item-name"><span>{{visitedDestination.country}}</span><span> - </span><span>{{visitedDestination.city}}</span></div>
+                    </div>
+                    <div *ngIf="user.visitedDestinations.length == 0">
+                      No hay destinos visitados
+                    </div>
+                </div>
+
+            </div>
+            <div class="section section-friends">
+                <div class="schedule-tittle">
+                    <div>Amigos</div>
+                </div>
+
+                <div class="selector-box">
+                    <span>Posibles Amigos</span>
+                    <div class="selection-add-box">
+                        <select data-testid="friend-list" #friendSelected="ngModel" required class="form-control"  [(ngModel)]="possibleFriendSelected" >
+                            <option *ngFor="let possibleFriend of possibleFriends" [ngValue]="possibleFriend">{{possibleFriend.name}} {{possibleFriend.surname}}</option>
+                        </select>
+                        <button *ngIf="!friendSelected.errors?.['required']" type="add" (click)="addNewFriend(possibleFriendSelected)" class= "btn btn-add">Agregar</button>
+                    </div>
+                </div>
+
+                <div class="friend-list" >
+                    <div class="friend-tag" *ngFor="let friend of user.friends">
+                        <img class="profile-pic-thumbnail rounded" src="../assets/imgs/juancarlosgomez.jpg">
+                        <div class="friend-info">
+                            <h4>{{friend.name}} {{friend.surname}}</h4>
+                            <label>Usuario: </label><span class="username">{{friend.userName}}</span> <span> / </span><span class="user-country">{{friend.countryOfResidence}}</span>
+                        </div>
+                        <button type="delete" (click)="user.removeFriend(friend)" class="btn-delete btn-delete-friend"><span class="colored-icon material-symbols-sharp">delete</span></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="done-box">
+        <div><button type="cancel" class="btn btn-secondary" (click)="this.cancelProfileEdit()">Cancelar</button></div>
+        <div><button type="done" [disabled]="uname.errors?.['pattern'] || uname.errors?.['minlength'] || uname.errors?.['maxlength'] ||
+            sname.errors?.['pattern']  || sname.errors?.['minlength'] || sname.errors?.['maxlength'] ||
+            nname.errors?.['pattern'] || adays.errors?.['pattern']" block class="btn btn-primary" (click)="this.saveChanges()">Aceptar</button></div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<nav class="nav-wrapper">
+    <a href="" class="brand-logo float-left" routerLink="/main" data-testid="logo">
+        <img src="../assets/imgs/Logo Hola Mundo.png" alt="Logo" class="logo">
+    </a>
+    <div class="nav-components">
+        <ul id="nav-computer">
+            <li>
+                <a href="" class="nav-button float-right" routerLink="/login" data-testid="logout">
+                    <span class="material-symbols-outlined">logout</span>
+                </a>
+            </li>
+            <li><a href="" class="nav-button float-right" routerLink="/profile" data-testid="profile">Perfil</a></li>
+            <li><a href="" class="nav-button float-right" routerLink="/my-itinerary" data-testid="my-itinerary">Mis Itinerarios</a></li>
+            <li><a href="" class="nav-button float-right" routerLink="/main" data-testid="home">Home</a></li>
+        </ul>
+        <mat-sidenav-container>
+            <mat-sidenav-content>
+                <button id="nav-mobile" href="" class="material-symbols-outlined" (click)="opened = !opened"> menu </button>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+</nav>
+
+<mat-sidenav [(opened)]="opened">
+    <ul class="vertical-menu">
+        <li>
+            <a href="" class="nav-button float-right" data-testid="logout">
+                <span class="material-symbols-outlined">logout</span>
+            </a>
+        </li>
+        <li><a href="" class="nav-button float-right" routerLink="/profile" data-testid="profile">Perfil</a></li>
+        <li><a href="" class="nav-button float-right" routerLink="/my-itinerary" data-testid="my-itinerary">Mis Itinerarios</a></li>
+        <li><a href="" class="nav-button float-right" routerLink="/main" data-testid="home">Home</a></li>
+    </ul>
+</mat-sidenav>

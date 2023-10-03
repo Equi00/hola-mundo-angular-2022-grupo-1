@@ -1,0 +1,263 @@
+html,body {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    flex-direction: column;
+}
+
+/* /-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/
+    Scrollbar
+/-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/ */
+
+::-webkit-scrollbar {
+    width: 1.2rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 1.2rem;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: blue;
+}
+
+/* /-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/
+    Search Bar
+/-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/ */
+#search-computer {
+    display: block;
+    visibility: visible;
+}
+
+#search-mobile {
+    display: none;
+    visibility: hidden;
+}
+
+.search-icon {
+    height: 2.5rem;
+    font-size: 30px !important;
+    line-height: 55px;
+    border: 1px 1px 1px 0 solid var(--color-secondary);
+    border-radius: 0 10px 10px 0;
+    color: var(--color-secondary-font);
+    background-color: var(--color-background-search);
+    cursor: pointer;
+    box-shadow: 2px 2px 5px gray;
+}
+
+.search-icon:hover {
+    background-color: var(--icon-color);
+    border-color: var(--icon-color);
+}
+
+.search-result {
+    display: flex;
+    justify-content: center;
+    text-align: start;
+    width: 100%;
+    background-color: black;
+    color: var(--color-secondary-font);
+    user-select: none;
+    text-indent: 10px;
+}
+
+.itinerary-result {
+    display: flex;
+    justify-content: space-around;
+    text-align: start;
+    width: 100%;
+    background-color: black;
+    color: var(--color-secondary-font);
+    user-select: none;
+    text-indent: 10px;
+}
+
+/* /-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/
+    Main
+/-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/ */
+
+.itinerary-grid {
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+    padding: 3rem 0;
+}
+
+.itinerary {
+    display: relative;
+    background-color: white;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 0.4rem;
+    box-shadow: 2px;
+    user-select: none;
+}
+
+.destination-container {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid;
+}
+
+.destination {
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+    color: var(--color-primary-font);
+    text-indent: 5px;
+}
+
+.card-title {
+    display: flex;
+    justify-content: center;
+}
+
+.rating-stars {
+    display: inline;
+    color: blueviolet;
+    text-shadow: 2px 2px 4px grey;
+    text-indent: 10px;
+}
+
+.info {
+    border-bottom: 1px solid;
+    padding: 15px 5px;
+}
+
+.cost-dificulty {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+    padding: 15px 5px;
+}
+
+.itinerary-icon:hover {
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+.more-detail {
+    padding: 5px;
+    color: var(--color-secondary-font);
+    text-align: center;
+    background-color: var(--color-primary);
+    border-radius: 0 0 0.4em 0.4em;
+}
+
+.more-detail:hover {
+    cursor: pointer;
+    background-color: var(--color-secondary);
+}
+
+/* /-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/
+    Responsive
+/-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------/ */
+
+@media (min-width: 401px) and (max-width: 768px) {
+    .search-input {
+        height: 2.5rem;;
+        width: 90%;
+        padding: 0 20px;
+        font-size: 15px;
+        color: var(--primary-font-color);
+        outline: none;
+        border-radius: 10px 0 0 10px;
+        box-shadow: 2px 2px 5px gray;
+    }
+    
+    .search-icon {
+        height: 2.5rem;
+        font-size: 30px !important;
+        line-height: 55px;
+        border-radius: 0 10px 10px 0;
+        color: var(--secondary-font-color);
+        cursor: pointer;
+        box-shadow: 2px 2px 5px gray;
+    }
+
+    .search-result {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background-color: black;
+        user-select: none;
+    }
+}
+
+@media (max-width: 400px) {
+    #search-mobile {
+        display: flex;
+        visibility: visible;
+    }
+    
+    #search-computer {
+        display: none;
+        visibility: hidden;
+    }
+
+    .itinerary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 100%);
+        justify-content: center;
+        padding: 3rem 0;
+    }
+    
+    .itinerary {
+        display: block;
+        width: 100%;
+        background-color: white;
+        margin-bottom: 2rem;
+        border-radius: 0.4rem;
+        user-select: none;
+    }
+
+    .search {
+        padding: 0;
+    }
+
+    .search-input {
+        display: flex;
+        height: 2.5rem;
+        justify-content: center;
+        width: 100% !important;
+        background-color: var(--color-secondary-font);
+        padding-right: 5px;
+        text-indent: 1.2rem;
+        border-color: var(--primary-backgound-color);
+        border-radius: 0 !important;
+        outline: none;
+    }
+    
+    .search-icon {
+        background-color: var(--color-background-search);
+        height: 2.5rem;
+        border: 2px solid;
+        border-radius: 0;
+        user-select: none;
+    }
+     
+    .search-icon:hover {
+        background-color: var(--icon-color);
+        border-color: var(--icon-color);
+    }
+    
+    .search-result {
+        display: flex;
+        justify-content: flex-start;
+        text-align: center;
+        width: 100%;
+        background-color: white;
+        color: var(--color-primary-font);
+        user-select: none;
+    }
+}

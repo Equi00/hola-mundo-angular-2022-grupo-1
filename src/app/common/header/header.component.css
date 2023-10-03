@@ -1,0 +1,23 @@
+mat-sidenav-container {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    margin: 1rem;
+}
+
+mat-sidenav {
+    color: var(--color-secondary-font);
+    background-color: var(--color-footer-background);
+    width: 12.5rem;
+}
+
+button {
+    background-color:var(--color-primary);
+    border: none;
+    color: var(--color-secondary-font);
+}
+
+.vertical-menu {
+    display: flex;
+    flex-direction: column;
+}

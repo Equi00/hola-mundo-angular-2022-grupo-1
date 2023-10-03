@@ -1,0 +1,145 @@
+<div class="container" *ngIf="this.itinerarySelected() != undefined">
+    <header>
+        <!-- VIEW MODE -->
+        <div class="subheader subheader-location" *ngIf="modeSelection=='view'">
+            <span class="material-symbols-sharp">map</span>
+            <h1>{{itinerary.destination.country}} - {{this.itinerarySelected()?.destination?.city}}</h1>
+        </div>
+        <!-- EDIT MODE -->
+        <div class="subheader subheader-location" *ngIf="modeSelection=='edit'">
+            <div class="selector"></div>
+                <select>
+                    <option *ngFor="let destination of destinations">{{destination.country}} - {{destination.city}}</option>
+                </select>
+        </div>
+        <!-- BOTH -->
+        <div class="subheader subheader-quantities">
+            <h3>Dias</h3>
+            <div data-testid="daysQuantity" class="quantity">{{this.itinerarySelected()?.numberOfDays()}}</div>
+            <div class="activities-quant">
+                <h3>Actividades</h3>
+                <div data-testid="activitiesQuantity" class="quantity">{{this.itinerarySelected()?.totalActivities()}}</div>
+            </div>
+        </div>
+        <div class="subheader subheader-average">
+            <span class="material-symbols-outlined">schedule</span>
+            <h3>Promedio act/dia</h3>
+            <div data-testid="averageTime" class="time">{{this.itinerarySelected()?.avarageDurationDay() | number: '1.0-0'}}'</div>
+        </div>
+        <div class="subheader subheader-price-level">
+            <div data-testid="totalCost" class="price">{{this.itinerarySelected()?.totalCost() | currency}}</div>
+            <h2 *ngIf="getItineraryDifficulty(this.itinerarySelected()!) == 'low' ">Baja</h2>
+            <h2 *ngIf="getItineraryDifficulty(this.itinerarySelected()!) == 'medium' ">Media</h2>
+            <h2 *ngIf="getItineraryDifficulty(this.itinerarySelected()!) == 'high' ">Alta</h2>
+        </div>
+    </header>
+
+    <div class="day-container" *ngFor="let day of this.itinerarySelected()?.days">
+        <div class="day-number">
+            <div class="day">Dia</div>
+            <div class="number"><strong>&#35;{{this.itinerarySelected()!.days.indexOf(day) + 1}}</strong></div>
+            <!-- EDIT MODE -->
+            <button type="delete" data-testid="removeDay" *ngIf="modeSelection=='edit'" (click)="this.itinerarySelected()?.removeDay(day)" class="btn-delete-day btn-delete" ><span class="material-symbols-sharp">delete</span></button>
+            <!-- BOTH -->
+        </div>
+        <div class="circuit-list activities">
+
+            <div class="circuit-list no-activity" *ngIf="!day.isAlmostOneActivity()">
+                <h2 >&#60; Sin Actividad &#62;</h2>
+            </div>
+
+            <div class="circuit-container" *ngFor="let activity of day.activities">
+                <div class="circuit-items">
+                    <div class="circuit-name">
+                        <span class="colored-icon material-symbols-sharp">location_on</span>
+                        <h2>{{activity.description}}</h2>
+                    </div>
+                    <div class="circuit-info">
+                        <div class="schedules">{{activity.initialTime.getHours()}} Hs. - {{activity.endTime.getHours()}} Hs..</div>
+                        <div class="time-lapse">
+                            <span class="material-symbols-outlined">schedule</span>
+                            <div class="minutes">{{activity.durationInMinutes()}} Minutos</div>
+                        </div>
+                        <div class="difficulty-box">
+                            <h2>Dificultad</h2>
+                            <div class="difficulty-level">
+                                <span class="material-symbols-sharp">circle</span>
+                                <span class="material-symbols-sharp" *ngIf="getDifficulty(activity) == 'medium' || getDifficulty(activity) == 'high'">circle</span>
+                                <span class="material-symbols-outlined" *ngIf="getDifficulty(activity) == 'low'">circle</span>
+                                <span class="material-symbols-sharp" *ngIf="getDifficulty(activity) == 'high'">circle</span>
+                                <span class="material-symbols-outlined" *ngIf="getDifficulty(activity) == 'low' || getDifficulty(activity) == 'medium'">circle</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                                {{activity.cost}}
+                        </div>
+                    </div>
+                </div>
+                <div class="delete-box">
+                    <!-- EDIT MODE -->
+                    <button data-testid="removeActivity" type="delete" *ngIf="modeSelection=='edit'" (click)="day.removeActivity(activity)" class="btn-delete"><span class="colored-icon material-symbols-sharp">delete</span></button>
+                </div>
+            </div>
+            <!-- EDIT MODE -->
+            <button data-testid="addActivity" type="add-act" (click)="getNewActivity(day)" *ngIf="modeSelection=='edit'" class="btn btn-activity btn-primary">&#43; Actividad</button>
+        </div>
+    </div>
+
+    <!-- EDIT MODE -->
+    <div class="add-day-container" *ngIf="modeSelection=='edit'">
+        <div class="add-day-info">
+            <button data-testid="addDay" type="add-day" (click)="this.itinerarySelected()?.addEmptyDay()" class="btn btn-grade btn-primary">&#43; Dia</button>
+        </div>
+    </div>
+
+    <!-- VIEW MODE - RATE ITINERARY-->
+    <div class="rating-container" *ngIf="modeSelection=='view' && ratingSent == false">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="list-inline rating-list"
+                    *ngFor="let star of stars" style="display: inline-block" >
+                      <li (click)="countStar(star)"
+                          [ngClass]="{'selected': (star <= selectedValue)}">
+                        <i class="fa fa-star"></i>
+                      </li>
+                </ul>
+            </div>
+          </div>
+          <button data-testid="rateItinerary" type="rate" (click)="rateItinerary()" class="btn btn-primary btn-rate" *ngIf="ratingSent == false">Calificar</button>
+    </div>
+    <div class="error-msg-container" *ngIf="modeSelection=='view'">
+        <div class="error-message" *ngIf="ratingSent == false">Debe calificar el Itinerario</div>
+    </div>
+
+    <!-- VIEW MODE - ITINERARY STARS -->
+     <div class="rating-container" *ngIf="modeSelection=='view' && ratingSent == true">
+        <div class="rating-info">
+            <div class="rating-number">{{getRateScore(this.itinerarySelected()!)}}</div>
+            <div class="rating-stars"  *ngFor="let rating of getRatingList(getRateScore(this.itinerarySelected()!))">
+                <span class="material-symbols-sharp">star</span>
+            </div>
+            <div class="rating-stars" *ngIf="hasHalfScore(getRateScore(this.itinerarySelected()!))">
+                <span class="material-symbols-outlined">star_half</span>
+            </div>
+            <div class="rating-stars"  *ngFor="let rating of getEmptyStars(getRateScore(this.itinerarySelected()!))">
+                <span class="material-symbols-sharp gray-stars">star</span>
+            </div>
+            <div class="vote-count"> Votos Totales: {{this.itinerarySelected()?.rate?.rateInfo?.length}}</div>
+        </div>
+    </div>
+
+
+    <!-- VIEW MODE -->
+    <div class="done-box" *ngIf="modeSelection=='view'">
+        <button data-testid="doItinerary" type="do-it" [disabled]="ratingSent == false" block class="btn btn-primary" (click)="doItinerary()" >Realizar Itinerario</button>
+
+    </div>
+
+    <!-- EDIT MODE -->
+    <div class="done-box" *ngIf="modeSelection=='edit'">
+        <div><button data-testid="doneEdit" type="done" class="btn btn-primary" (click)="saveItinerary()">Aceptar</button></div>
+        <div><button data-testid="cancelEdit" type="cancel" class="btn btn-secondary" (click)="cancelEdit()">Cancelar</button></div>
+
+    </div>
+
+    </div>

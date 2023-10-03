@@ -1,0 +1,42 @@
+<section class="login-web">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Hola Mundo!</h3>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="password" class="form-label">Usuario</label>
+          <div class="input-group">
+            <span class="material-symbols-outlined">person</span>
+            <input
+              type="text"
+              class="form-control input_style"
+              [ngClass]="this.errorLogingIn ? 'error-login' : 'no-error-login'"
+              name="username"
+              [(ngModel)]='this.loginUsernameText'
+              placeholder="Usuario"
+              (keydown)="inputChanged()"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-label">Contraseña</label>
+          <div class="input-group">
+            <span class="material-symbols-outlined">key</span>
+            <input
+              type="password"
+              class="form-control input_style"
+              [ngClass]="this.errorLogingIn ? 'error-login' : 'no-error-login'"
+              name="password"
+              [(ngModel)]='this.loginPasswordText'
+              placeholder="Contraseña"
+              (keydown)="inputChanged()"
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)='login()'>Ingresar</button>
+      </form>
+    </div>
+  </div>
+</section>

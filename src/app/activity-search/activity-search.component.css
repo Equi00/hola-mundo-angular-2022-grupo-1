@@ -1,0 +1,205 @@
+html, body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: 16px;
+}
+
+/* ---------------------- SCROLLBAR ---------------------- */
+
+main{
+    /* overflow-y: scroll; */
+    width: 100%;
+    /* height: 100vh; */
+}
+
+main::-webkit-scrollbar {
+    width: 1.2rem;
+}
+
+main::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+main::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary-font);
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+main::-webkit-scrollbar-thumb:hover {
+    background-color: var(--icon-background-color);
+}
+
+.search {
+    user-select: none;
+  }
+
+.search .material-symbols-sharp{
+    user-select: none;
+}
+
+/* ---------------------- CARD ---------------------- */
+
+.card-container{
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.activity-container{
+    background-color: var(--color-secondary-font);
+    color: var(--color-primary-font);
+    border: 2px solid var(--color-secondary);
+    width: 55%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+
+.activity-container:hover {
+    border: 2px solid var(--color-primary);
+    box-shadow: 2px 2px 5px gray;
+}
+
+.activity-name{
+    background-color: var(--color-background-secondary);
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    height: auto;  
+    align-items: center;
+}
+
+p > .material-symbols-sharp{
+    color: var(--color-primary);
+    font-size: 2rem;
+}
+
+.activity-data{
+    background-color: var(--color-background-secondary);
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid var(--color-secondary);
+    width: 100%;
+    height: auto;  
+    align-items: center; 
+}
+
+.minutes{
+    padding-left: 0.4em;
+}
+
+.activity-container, .activity-name{
+    border-radius: 0.5em;
+}
+
+.activity-data{
+    border-radius: 0 0 0.5em 0.5em;
+}
+
+.difficulty-box, .time-lapse{
+    width: 35%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.price{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.difficulty-box{
+    padding: 0 0.8em;
+    border-left: 1px solid var(--color-primary-font);
+    border-right: 1px solid var(--color-footer-background);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.difficulty-level{
+    display: flex;
+}
+
+/* ---------------------- RESPONSIVE ---------------------- */
+
+@media all and (max-width:1075px) and (min-width: 769px) {
+    .time-lapse{
+        flex-direction: column;
+    }
+}
+
+@media all and (max-width:800px) and (min-width: 769px) {
+    .difficulty-box{
+        flex-direction: column;
+    }
+}
+
+@media all and (max-width:719px) and (min-width: 401px) {
+    .time-lapse{
+        flex-direction: column;
+    }
+}
+
+@media all and (max-width:465px) and (min-width: 401px) {
+    .difficulty-box{
+        flex-direction: column;
+    }
+}
+
+/* ---------------------- TABLET ---------------------- */
+@media all and (max-width:768px) and (min-width: 401px) {
+
+    .activity-container{
+        width: 95%;
+    }
+
+}
+
+/* ---------------------- MOBIL ---------------------- */
+
+@media all and (max-width:400px) {
+
+    .all-card-container::-webkit-scrollbar-thumb{
+        background-color: transparent;
+    }
+
+    .all-card-container::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .activity-container{
+        width: 95%;
+    }
+
+    .activity-data{
+        flex-direction: column;
+        padding: 1em;
+    }
+
+    .difficulty-box{
+        border: 0;
+        margin: 0;
+        font-size: 1.2em;
+    }
+
+    .time-lapse{
+        width: fit-content;
+        font-size: 1.2em;
+    }
+
+    .price{
+        font-size: 1.5em;
+    }
+
+}

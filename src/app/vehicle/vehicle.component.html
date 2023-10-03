@@ -1,0 +1,32 @@
+<main>
+  <div class="card">
+    <div class="card-title">
+      <p>¿Desea agregar un vehiculo a su viaje?</p>
+    </div>
+    <div class="search">
+      <input type="text" [(ngModel)]="vehicleToSearch" placeholder="Buscar" (keydown.enter)="makeSearch()" data-testid="input-search"/>
+      <div class="search-btn" (click)="makeSearch()" data-testid="search-button">
+        <span class="material-symbols-outlined">search</span>
+      </div>
+    </div>
+    <div class="card-content">
+      <!-- VEHICULOS -->
+      <div class="vehicle-cards">
+        <!-- class="vehicle-card" -->
+        <app-vehicle-card [ngClass]="this.vehicle.id == this.vehicleIdSelected ? 'vehicle-card vehicle-selected' : 'vehicle-card'"  *ngFor="let vehicle of vehiclesRecieved" (click)="select(vehicle.id)"  [vehicle]="vehicle" [attr.data-testid]="'vehicle-card-comp-' + vehicle.id"></app-vehicle-card>
+        <p *ngIf="vehiclesRecieved.length == 0">{{this.notVehicleText}}</p>
+      </div>
+
+    </div>
+    <div class="card-footer">
+      <div class="price-text">
+        <p>Viaje <b>$40.000</b> + Vehiculo <b>$15.000</b> = <b>$55.000</b></p>
+      </div>
+      <div class="button-container">
+        <button class="btn btn-secondary" (click)="this.goBack()" [disabled]="!this.buttonsEnabled" data-testid="back-button">Volver</button>
+        <div class="space"></div>
+        <button class="btn btn-primary" (click)="this.finish()" [disabled]="!this.buttonsEnabled" data-testid="buy-omit-button">{{this.vehicleIdSelected != null ? 'Comprar' : 'Omitir'}}</button>
+      </div>
+    </div>
+  </div>
+</main>

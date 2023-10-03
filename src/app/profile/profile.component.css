@@ -1,0 +1,352 @@
+    html, body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        background: var(--color-background) !important;
+        }
+
+    .profile-edit-container {
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0.5rem;   
+        align-content: center;
+        justify-content: center;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        background-color: var(--color-background-secondary);
+    }
+    
+    .header-container {
+        display: inline-flex;
+        background-color: var(--icon-background-color);
+        border-radius: 0.5rem 0.5rem 0rem 0rem;   
+        width: 100%;
+        gap: 1.3em;
+        padding: 0.5em 1.5em 0.5em 1.5em;
+        align-items:center;
+        height: auto;
+    }
+    
+    .header-container > h1,h2,h3{
+        margin: 0em;
+        color: var(--color-secondary-font);
+        padding: 0em;
+    }
+    
+    .container-title {
+        display: inline-flex;
+        justify-content: space-between;
+        background-color: var(--color-primary);
+        width: 100%;
+        align-items: center;
+        color: var(--color-secondary-font);
+        padding: 0em 1.5em 0em 1.5em;
+    }
+    
+    .title-info {
+        display: inline-flex;
+        font-size: 0.7em;
+        align-items: baseline;
+        gap: 1.2em;
+    }
+    
+    .profile-pic {
+        height: 3.5rem;
+        width: 3.5rem;  
+    }
+    
+    .profile-pic-thumbnail {
+        height: 2rem;
+        width: 2rem; 
+    }
+    
+    img.rounded {
+        object-fit: cover;
+        border-radius: 50%;
+    
+    }
+    
+    .data-show {
+        display: flex;
+        gap: 1%;
+        margin: 0.8em;
+    }
+
+    label {
+        font-size: 0.8em;
+        padding-top: 0.5em;
+    }
+    
+    .vehicle-preferences {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        border-top: 0.1rem solid gray;
+        padding: 0.5em 1.5em 1em 1em;
+        color: var(--color-primary-font);
+        font-weight: bold;
+    }
+    
+    .vehicle-buttons {
+        display: inline-flex;
+        gap: 1rem;
+        margin-top: 0.5em;
+    }
+    
+    .section-schedule {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        overflow-x:hidden;
+    }
+    
+    .section {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+    }
+    
+    .section-visited-destinations > .schedule-chart {
+        align-self: stretch;
+    }
+    
+    .section-visited-destinations > .schedule-tittle {
+        justify-self: left;
+    }
+       
+    .schedule-tittle {
+        display: contents;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+        min-height: 2em;
+        /* min-width: 5em; */
+    }
+    
+    .section-visited-destinations > .schedule-tittle {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .btn-add-destiny {
+        align-self: flex-end;
+        margin-left: auto;
+    }
+
+    .btn-invisible {
+        visibility: hidden;
+    }
+    
+    .charts-card {
+        border: 0.05em solid var(--font-content-color);
+        border-radius: 0.2em;
+        margin-top: 1em;
+        justify-content: center;
+    }
+    
+    .chart-tittle {
+        background-color: var(--color-background);
+        padding: 0.1em;
+        text-align: center;
+        font-weight: bold;
+        min-height: max-content;
+    }
+    
+    .chart-items {
+        display: inline-flex;
+        border-top: 0.05em solid var(--font-content-color);
+        width: 100%;
+        height: max-content;
+        padding: 0.3em;
+        justify-content: center;
+    } 
+    
+    .item-name {
+        margin-right: auto;
+        min-height: max-content;
+    }
+    
+    .selector-box {
+        margin-top: 1em;
+        font-size: 0.8rem;
+    }
+    
+    .selection-add-box {
+        display: inline-flex;
+        width: 100%;
+        justify-content: space-between;    
+    }
+    
+    .selection-add-box > select {
+        width: 50%;
+        height: 2.3em;
+        font-size: 0.8em;
+    }
+    
+    .selection-add-box > .btn-add {
+        font-size: 0.8em;
+    }
+    
+    .friend-list {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        overflow: scroll;
+        height: 0px;
+        margin-top: 0.8em;
+    }       
+    
+    .friend-tag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5em;
+        height: max-content;
+    }
+    
+    .friend-info {
+        font-size: small;
+    }
+    
+    .friend-info > h4 {
+        margin: 0.1em;
+    }
+    
+    div > .btn-delete-friend {
+        margin-left: auto;
+        margin-right: 1rem;
+        color: var(--font-selection-color);
+        
+    }
+    
+    .done-box {
+        display: inline-flex;
+        justify-content: flex-end;
+        margin: 1em;
+        gap: 1em
+    }
+    
+    .btn-filter {
+        border-radius: 5em;
+        width: 10em;
+        height: 2em;
+        font-size: 0.75em;
+        padding: 0;
+    }
+    
+    .btn-filter-on {
+        background-color: var(--color-primary);
+        color: var(--color-secondary-font);
+    }
+    
+    .btn-filter-off {
+        background-color: var(--color-secondary-font);
+        color: var(--color-primary);
+    }
+    
+    .btn-delete {
+        margin: 0px;
+        padding: 0%;
+        cursor: pointer;
+        background: none;
+        border: none;
+    }
+    
+    .chart-items > .btn-delete {
+        font-size: 3px;
+        color: rgb(246, 98, 98);
+    }
+
+    .error-message {
+        color: rgb(246, 98, 98);
+    }
+
+    /* ****** TABLET ****** */
+    @media all and (max-width:768px) and (min-width: 401px) {
+        .profile-edit-container {
+            width: 99%;
+            margin: 3rem 1% 5rem 1%;
+        }
+        input, select {
+            width: 100%;
+        }    
+        label {
+            max-height: 2em;
+        }
+        .schedule-tittle {
+            display: flex;
+            flex-direction: column;
+            min-width: max-content;
+        }
+        .schedule .data-show {
+            align-items: stretch;
+            align-content: stretch;
+        }
+        .section-desired-destinations, .section-visited-destinations {
+            align-content: space-between;
+        }
+        .section-desired-destinations > .schedule-tittle {
+            justify-content: space-between;
+        }    
+        .section-visited-destinations > .schedule-chart {
+            align-self: flex-end;
+        }
+        .schedule-tittle > .btn {
+            align-self: flex-end;
+            width: auto;
+        }
+    }
+    
+    /*  ***** MOBILE ****** */
+    @media all and (max-width:400px) {
+        .profile-edit-container{
+            width: 98%;
+            margin-left: 1%;
+            margin-right: 1%;
+            min-width: 200px;
+        }
+        .container-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .header-container {
+            border-radius: 0rem
+        }
+        .header-container > h1 {
+            font-size: 1.6rem;
+        }
+        .title-info {
+            flex-wrap: wrap;
+        }
+        .data-show {
+            display: flex;
+            flex-direction: column;
+        }
+        .vehicle-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        } 
+        .section-desired-destinations, .section-visited-destinations {
+            display: flex;
+            flex-direction: column;
+        }
+        .section-visited-destinations , .section-friends{
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+        .friend-list {
+            display: flex;
+            flex-direction: column;
+            margin-top: 0.8em;
+        }  
+        .friend-list {
+            height: max-content;
+        }   
+    
+    }

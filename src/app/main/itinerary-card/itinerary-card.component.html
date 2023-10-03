@@ -1,0 +1,36 @@
+<!-- Itinerary -->
+<div class="itinerary">
+    <div class="destination-container">
+        <div class="destination">
+            <div class="card-title">
+                <span class="itinerary-icon material-symbols-outlined">map</span>
+                <strong>
+                    {{itinerary.country()}}
+                     -
+                    {{itinerary.city()}}
+                </strong>
+            </div>
+            <span *ngIf="user?.canEditItinerary(itinerary)" class="itinerary-icon material-symbols-outlined" routerLink="/itinerary/{{itinerary.id}}/{{'edit'}}">edit</span>
+        </div>
+        <div class="rating-container">
+            <div class="rating-stars" *ngFor="let rating of getRatingList(getRateScore())">
+                <span class="material-symbols-sharp">star</span>
+            </div>
+            <div class="rating-stars" *ngIf="hasHalfScore(getRateScore())">
+                <span class="material-symbols-outlined">star_half</span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="info">
+            <div>Viaje de {{itinerary.numberOfDays()}} Dias</div>
+            <div>Actividades totales: {{itinerary.totalActivities()}}</div>
+            <div>Duracion promedio por dia: {{truncateValue(itinerary.avarageDurationDay())}} Horas</div>
+        </div>
+    </div>
+    <div class="cost-dificulty">
+        <div ><strong>Costo: $ {{itinerary.totalCost()}}</strong></div>
+        <div><strong>Dificultad: {{itinerary.difficulty().name.toUpperCase()}}</strong></div>
+    </div>
+    <div class="more-detail" routerLink="/itinerary/{{itinerary.id}}/{{'view'}}">Ver detalles</div>
+</div>

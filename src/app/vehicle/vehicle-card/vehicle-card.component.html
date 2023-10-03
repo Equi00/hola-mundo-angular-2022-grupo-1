@@ -1,0 +1,53 @@
+<div class="vehicle-card-icon" data-testid="vehicle-card">
+  <p class="vehicle-type">
+    {{
+      this.vehicle.isMotocicle()
+        ? 'Moto'
+        : vehicle.isCar()
+        ? 'Auto'
+        : vehicle.isTruck()
+        ? 'Camioneta'
+        : 'Desconocido'
+    }}
+  </p>
+  <span class="material-symbols-outlined">{{
+    vehicle.isMotocicle()
+      ? 'motorcycle'
+      : vehicle.isCar()
+      ? 'directions_car'
+      : vehicle.isTruck()
+      ? 'local_shipping'
+      : 'question_mark'
+  }}</span>
+</div>
+
+<div class="vehicle-card-info">
+  <p class="vehicle-brand">
+    Marca <b data-testid="vehicle-brand-text">{{ vehicle.brand }}</b>
+  </p>
+  <p class="vehicle-with-contract" *ngIf="vehicle.hasAnAgreement()">
+    con convenio
+    <span class="material-symbols-outlined"> handshake </span>
+  </p>
+  <p class="vehicle-model">
+    Modelo <b>{{ vehicle.model }}</b>
+  </p>
+  <p class="vehicle-year">
+    Año <b>{{ vehicle.fabricationYear }}</b>
+  </p>
+</div>
+<div class="vehicle-card-costs">
+  <div class="vehicle-costs">
+    <p class="vehicle-cost-per-day">
+      Costo por dia <b>$ {{ vehicle.dayCost }}</b>
+    </p>
+    <p class="vehicle-cost-base">
+      Costo Base <b>$ {{ vehicle.baseCost(7) }}</b>
+    </p>
+  </div>
+  <div class="vehicle-total-cost">
+    <p class="vehicle-total-cost-text">
+      <b>$ {{ vehicle.totalCost(7) }}</b>
+    </p>
+  </div>
+</div>

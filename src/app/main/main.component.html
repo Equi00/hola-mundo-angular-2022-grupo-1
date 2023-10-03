@@ -1,0 +1,26 @@
+<!-- Search Bar -->
+<main>
+    <div class="header">
+        <form class="search">
+            <input type="text" class="search-input" name="filter" placeholder="Filtrar Busqueda" [(ngModel)]="filterPipe">
+            <div class="span-modifier">
+                <span class="search-icon material-symbols-outlined">search</span>
+            </div>
+        </form>
+        <div class="search-result">
+            <div id="search-computer" class="search-container">
+                <div class="span-modifier">
+                    <span class="result-icon material-symbols-outlined">search</span>
+                    Resultados de la busqueda {{(itineraries | itineraryFilter: filterPipe).length}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Itineraries  -->
+    <div class="main-content">
+        <div class="itinerary-grid">
+            <app-itinerary-card *ngFor="let itinerary of itineraries | itineraryFilter: filterPipe" [itinerary]="itinerary" [user]="user"></app-itinerary-card>
+        </div>
+    </div>
+</main>

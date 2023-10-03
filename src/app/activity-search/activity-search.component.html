@@ -1,0 +1,47 @@
+<div class="search">
+    <input type="text" [(ngModel)]="activityToSearch" placeholder="Buscar" (keydown.enter)="makeSearch()" data-testid="search-input">
+    <div class="search-btn" (click)="makeSearch()" data-testid="search-button">
+        <span class="material-symbols-outlined">search</span>
+    </div>
+</div>
+
+<main>
+    <div class="card-container" *ngFor="let activity of activitiesRecieved" data-testid="activities">
+        <div class="activity-container" (click)="this.activitySelected(activity.id)" data-testid="actividad">
+            <div class="activity-name">
+                <p><span class="colored-icon material-symbols-sharp">location_on</span></p>
+                <p><strong>{{activity.description}}</strong></p>
+            </div>
+            <div class="activity-data">
+                        <div class="time-lapse">
+                            <div class="schedules">{{activity.initialTime.getHours()}}:{{activity.initialTime.getMinutes()}} Hs. -
+                                {{activity.endTime.getHours()}}:{{activity.endTime.getMinutes()}} Hs. </div>
+                            <span class="material-symbols-outlined">schedule</span>
+                            <div class="minutes">{{activity.durationInMinutes()}} minutos</div>
+                        </div>
+                        <div class="difficulty-box">
+                            <div>Dificultad</div>
+                            <div class="difficulty-level" *ngIf="activity.difficulty.name == 'HIGH'">
+                                <span class="material-symbols-sharp">circle</span>
+                                <span class="material-symbols-outlined">circle</span>
+                                <span class="material-symbols-outlined">circle</span>
+                            </div>
+                            <div class="difficulty-level" *ngIf="activity.difficulty.name == 'MEDIUM'">
+                                <span class="material-symbols-sharp">circle</span>
+                                <span class="material-symbols-sharp">circle</span>
+                                <span class="material-symbols-outlined">circle</span>
+                            </div>
+                            <div class="difficulty-level" *ngIf="activity.difficulty.name == 'LOW'">
+                                <span class="material-symbols-sharp">circle</span>
+                                <span class="material-symbols-sharp">circle</span>
+                                <span class="material-symbols-sharp">circle</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                                <strong>${{thousandsSeparator(activity.cost)}}</strong>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+</main>
